@@ -1,4 +1,17 @@
 /// <reference types="cypress" />
+
+import { should } from "chai"
+import { e2e } from "./constants"
+
+declare global {
+namespace Cypress {
+    interface Chainable {
+        validacionInicial(): Chainable<void>
+        editarActividad(): Chainable<void>
+        }
+    }
+}
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -35,3 +48,25 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('validacionInicial', () => {
+
+    
+        cy.get(e2e.TITULO_PRINCIPAL).should('contain', 'Lista de Actividades')
+        cy.get(e2e.SUBTITULO).should('contain', 'Agregar Actividad')
+        cy.get(e2e.CAMPO_AGREGAR_ACTIVIDAD)
+          .should('be.visible')
+          .and('attr' , 'value', '')
+        cy.get(e2e.BOTON_AGREGAR)
+          .should('be.visible')
+          .should('has.css', 'background-color', 'rgb(40, 167, 69)')
+
+})
+
+Cypress.Commands.add('editarActividad', () => { 
+    cy.get(e2e.BOTON_EDITAR, {timeout: 10000})
+      .should('be.visible')
+      .should('has.css', 'background-color', 'rgb(255, 193, 7')
+    
+})
+ 
