@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "npx cypress run --spec cypress/e2e/*.cy.ts",
-    "cy:open": "start-server-and-test start http://localhost:4200 test",
+    "cy:open": "start-server-and-test start http://localhost:4200 test --timeout=120000",
     "serve:ssr:lista-actividades": "node dist/lista-actividades/server/server.mjs"
   },
   "private": true,
